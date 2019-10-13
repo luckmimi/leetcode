@@ -1,0 +1,8 @@
+/* Write your T-SQL query statement below */
+With CTE as 
+(SELECT Num, Id,row_number()over (partition by Num order by Id) as row_num from Logs)
+
+Select distinct Num  as [ConsecutiveNums]
+from CTE
+group by Num, Id-row_num
+having count(*)>2;
