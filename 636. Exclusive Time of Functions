@@ -1,0 +1,21 @@
+class Solution:
+    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
+        stack = []
+        res = [0] * n
+        
+        for f in logs:
+            id,flag,timestamp =  f.split(':')
+            timestamp = int(timestamp)
+            id = int(id)
+            if flag == 'start':
+                stack.append([id,timestamp])
+            else:
+                start = stack[-1][1]
+                duration = timestamp - start + 1
+                res[id] += duration
+                stack.pop()
+                if stack:
+                    prevId = stack[-1][0]
+                    res[prevId] -= duration
+        return res
+                    
