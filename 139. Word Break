@@ -1,0 +1,24 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n   =  len(s)
+        memo =  [  None]  *  (n  + 1)
+        word = set(wordDict)
+        def  dfs(s, i,word):
+            if i  ==  0: 
+                return  True
+            if memo[i]  != None : 
+                return  memo[i]
+            memo[i]  =  False
+            for  j in  range(i):
+                if s[j:i] in word:
+                    right  = True
+                else:
+                    right = False
+                if   not  right:
+                    continue
+                left = dfs(s,j,word)
+                if  left:
+                    memo[i] =  True
+                    break
+            return memo[i]
+        return dfs(s,n,word)
