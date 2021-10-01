@@ -1,0 +1,15 @@
+class Solution:
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        
+        if len(heights) < 2:
+            return [0]
+        right = len(heights) - 1
+        maxH = float('-inf')
+        res = []
+        while right >= 0:
+            if heights[right] > maxH:
+                res.append(right)
+                maxH = heights[right]
+            right -= 1
+        return res[::-1]
+            
