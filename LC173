@@ -1,0 +1,33 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from queue import Queue
+class BSTIterator:
+
+    def __init__(self, root: Optional[TreeNode]):
+        self.root = TreeNode(-1)
+        self.root.right = root
+        self.q = Queue(maxsize=0)
+        def dfs(root):
+            if not root:
+                return
+            dfs(root.left)
+            self.q.put(root.val)
+            dfs(root.right)
+        dfs(root)    
+        
+
+    def next(self) -> int:
+        if not self.q.empty():
+            return self.q.get()
+        return False
+            
+        
+
+    def hasNext(self) -> bool:
+        if self.q.empty():
+            return False
+        return True
