@@ -1,0 +1,12 @@
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        self.res = []
+        def backtrack(pos,cur,k):
+            if len(cur) == k:
+                self.res.append(deepcopy(cur))
+            for i in range(pos,n+1):
+                cur.append(i)
+                backtrack(i+1,cur,k)
+                cur.pop()
+        backtrack(1,[],k)
+        return self.res
