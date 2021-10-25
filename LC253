@@ -1,0 +1,12 @@
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        res = []
+        intervals.sort()
+        import heapq
+        
+        for interval in intervals:
+            if res and  res[0] <= interval[0]:
+                heapq.heapreplace(res,interval[1])
+            else:
+                heapq.heappush(res,interval[1])
+        return len(res)
