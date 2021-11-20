@@ -1,0 +1,15 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if len(intervals) == 1:
+            return intervals
+        intervals.sort()
+        res = [intervals[0]]
+        for i in range(len(intervals)):
+            a,b = res[-1]
+            c,d = intervals[i]
+            if c > b:
+                res.append(intervals[i])
+            else:
+                res.pop()
+                res.append([min(a,c),max(b,d)])
+        return res
