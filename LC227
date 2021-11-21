@@ -1,0 +1,33 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        if len(s) == 0  or s == ' ': return 0
+     
+        res = 0 
+        stack = []
+        check = {"*","-","+","/"}
+        sign = '+'
+        i = 0 
+        while i < len(s):
+            if s[i].isnumeric():
+                num = int(s[i])
+                while i + 1 < len(s)  and s[i+1].isnumeric():
+                    num = 10 * num + int(s[i+1])
+                    i+=1
+            if (s[i] in check) or i == len(s) - 1: 
+                    if sign == "+":
+                        stack.append(num)
+    
+                    if sign == '-':
+                        stack.append(-num)
+                    if sign == "*":
+                        stack.append(stack.pop()*num)
+                    if sign == '/':
+                        stack.append(math.trunc(stack.pop()/num))
+                    sign = s[i]
+                    num = 0 
+            i += 1
+        
+        if stack:
+            res += sum(stack)
+        return res
+                    
