@@ -1,0 +1,14 @@
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def check(s):
+            res = []
+            for c in s:
+                if c != '#':
+                    res.append(c)
+                else:
+                    if res:
+                        res.pop()
+            return res
+        
+        return check(s) == check(t)
+                    
