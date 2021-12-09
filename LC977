@@ -1,0 +1,20 @@
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        res = [0]*len(nums)
+    
+        left = 0 
+        right,pos = len(nums) - 1,len(nums) - 1
+        cur = 0 
+        while left <= right:
+            x =  nums[left] ** 2 
+            y =  nums[right] ** 2 
+            if x > y :
+                cur = x
+                left += 1
+            else:
+                cur = y
+                right -= 1
+            res[pos] = cur
+            pos -= 1
+          
+        return sorted(res)
