@@ -1,0 +1,20 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+        to_remove=set()
+        arr = ''
+        for i,char in enumerate(s):
+            if char == '(':
+                stack.append(i)
+            else:
+                if char == ')':
+                    if not stack:
+                        to_remove.add(i)
+                    else:
+                        stack.pop()
+        if stack:
+            for i in stack:
+                to_remove.add(i)
+        
+        return ''.join([s[i] for i in range(len(s)) if i not in to_remove])
+        
