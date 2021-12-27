@@ -1,0 +1,26 @@
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.n = len(w) - 1
+        self.w = w
+        self.total = sum(w)
+    
+        for i in range(1,len(w)):
+            self.w[i] = (self.w[i-1] +  w[i])
+    
+        
+            
+    def pickIndex(self) -> int:
+    
+        picked = random.random()*self.total
+        # index = 0
+        # while self.w[index] < picked:
+        #     index += 1
+        return bisect.bisect(self.w,picked)
+            
+        
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
