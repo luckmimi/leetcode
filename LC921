@@ -1,0 +1,15 @@
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        
+        to_add = 0
+        stack = []
+        for i,c in enumerate(s):
+            if c =='(':
+                stack.append(c)
+            else:
+                if stack:
+                    stack.pop()
+                else:
+                    to_add += 1
+        return to_add + len(stack)
+                
