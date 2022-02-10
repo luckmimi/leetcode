@@ -1,0 +1,28 @@
+class Solution:
+    def maxDistance(self, pos: List[int], m: int) -> int:
+        def valid(pos,force,m):
+            count = 1
+            cur = pos[0]
+            for i in range(len(pos)):
+                if pos[i] - cur >= force:
+                    count += 1
+                    cur = pos[i]
+            return count >= m
+                
+            
+        pos.sort()
+        left = 1
+        right =  pos[-1] - pos[0]
+        
+    
+        while left + 1 < right:
+            mid = left + (right - left )//2 
+            if valid(pos,mid,m):
+                left = mid
+            else:
+                right = mid 
+#             print(f'left:{left},right:{right}')
+        
+        if valid(pos,right,m):
+            return right
+        return left
