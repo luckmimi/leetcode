@@ -1,0 +1,10 @@
+def quick_sort(nums, left, right):
+# pick pivot value, iterate the nums array, put all the index with values less than pivot on this left, and bigger or equal on his right. return the index that can enable to split them
+    pivot = nums[right]
+    wall = left
+    for i in range(left, right):
+        if nums[i] < pivot:
+            nums[i], nums[wall] = nums[wall], nums[i]
+            wall += 1  
+    nums[wall], nums[right] = nums[right], nums[wall]
+    return wall
